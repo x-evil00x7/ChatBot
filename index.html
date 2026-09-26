@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Material Symbols for icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+  <div class="chat-container">
+    <!-- Header -->
+    <header class="chat-header">
+      <div class="header-info">
+        <span class="material-symbols-outlined logo-icon">smart_toy</span>
+        <div>
+          <h2>AI Assistant</h2>
+          <span class="status">Online</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Chat Messages Box -->
+    <div class="chat-box" id="chatBox">
+      <div class="message bot-message">
+        <p>Hello! I am your AI assistant. How can I help you today?</p>
+      </div>
+    </div>
+
+    <!-- Input Form -->
+    <form class="chat-input-form" id="chatForm">
+      <input 
+        type="text" 
+        id="userInput" 
+        placeholder="Type a message..." 
+        autocomplete="off" 
+        required 
+      />
+      <button type="submit" id="sendBtn">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
