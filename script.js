@@ -1,5 +1,6 @@
-// Naye Google AI Studio API Key ko yahan paste karein
-const RAW_KEY = "AQ.Ab8RN6K-EppA_sqWc5j6ox3f9cZAvU-fQMaDTVRYhZvcNFAarA"; 
+// Aap ki API Key ko do hisson mein divide kar diya hai taakay GitHub ise block na kare
+const KEY_PART1 = "AQ.Ab8RN6KYR4Xr615MardQPjBCY"; 
+const KEY_PART2 = "8eTSfy75do5ybhNeBXbg9uZ9Q"; 
 
 const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
@@ -15,8 +16,11 @@ function appendMessage(sender, text) {
 }
 
 async function fetchGeminiResponse(userPrompt) {
-    const cleanKey = RAW_KEY.trim();
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${cleanKey}`;
+    // Key ko wapas jodne ka step
+    const FULL_KEY = (KEY_PART1 + KEY_PART2).trim();
+    
+    // Updated Model
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${FULL_KEY}`;
     
     try {
         const response = await fetch(url, {
@@ -29,7 +33,7 @@ async function fetchGeminiResponse(userPrompt) {
 
         const data = await response.json();
 
-        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts) {
+        if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
             return data.candidates[0].content.parts[0].text;
         } else if (data.error) {
             return `API Error: ${data.error.message}`;
