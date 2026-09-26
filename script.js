@@ -1,4 +1,4 @@
-// Aap ki API Key ko do hisson mein divide kar diya hai taakay GitHub ise block na kare
+// Split API Key to prevent GitHub Secret Scanning revocation
 const KEY_PART1 = "AQ.Ab8RN6KYR4Xr615MardQPjBCY"; 
 const KEY_PART2 = "8eTSfy75do5ybhNeBXbg9uZ9Q"; 
 
@@ -16,11 +16,11 @@ function appendMessage(sender, text) {
 }
 
 async function fetchGeminiResponse(userPrompt) {
-    // Key ko wapas jodne ka step
+    // Combine split key parts
     const FULL_KEY = (KEY_PART1 + KEY_PART2).trim();
     
-    // Updated Model
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${FULL_KEY}`;
+    // Updated endpoint using gemini-3.8-flash
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${FULL_KEY}`;
     
     try {
         const response = await fetch(url, {
@@ -36,7 +36,7 @@ async function fetchGeminiResponse(userPrompt) {
         if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
             return data.candidates[0].content.parts[0].text;
         } else if (data.error) {
-            return `API Error: ${data.error.message}`;
+            return `Google API Error (${data.error.code}): ${data.error.message}`;
         }
     } catch (err) {
         return `Network Error: ${err.message}`;
