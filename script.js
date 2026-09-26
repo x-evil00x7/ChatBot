@@ -1,5 +1,5 @@
-// Paste your active Google AI Studio API Key here
-const API_KEY = "AQ.Ab8RN6Ivutt1DUpqu-T2G2gja6n68rTmlJcT_XZ5XDPFUE4ZRA";
+// Naye Google AI Studio API Key ko yahan paste karein
+const RAW_KEY = "AQ.Ab8RN6K-EppA_sqWc5j6ox3f9cZAvU-fQMaDTVRYhZvcNFAarA"; 
 
 const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
@@ -15,8 +15,8 @@ function appendMessage(sender, text) {
 }
 
 async function fetchGeminiResponse(userPrompt) {
-    // Working endpoint for Gemini 1.5 Flash
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+    const cleanKey = RAW_KEY.trim();
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${cleanKey}`;
     
     try {
         const response = await fetch(url, {
