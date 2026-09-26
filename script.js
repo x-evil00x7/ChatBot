@@ -1,6 +1,4 @@
-// Split API Key to prevent GitHub Secret Scanning revocation
-const KEY_PART1 = "AQ.Ab8RN6KYR4Xr615MardQPjBCY"; 
-const KEY_PART2 = "8eTSfy75do5ybhNeBXbg9uZ9Q"; 
+const API_KEY = "AQ.Ab8RN6KYR4Xr615MardQPjBCY8eTSfy75do5ybhNeBXbg9uZ9Q";
 
 const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
@@ -16,11 +14,8 @@ function appendMessage(sender, text) {
 }
 
 async function fetchGeminiResponse(userPrompt) {
-    // Combine split key parts
-    const FULL_KEY = (KEY_PART1 + KEY_PART2).trim();
-    
-    // Updated endpoint using gemini-3.8-flash
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${FULL_KEY}`;
+    // Exact requested model endpoint: gemini-3.8-flash
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${API_KEY}`;
     
     try {
         const response = await fetch(url, {
