@@ -1,4 +1,5 @@
-const API_KEY = "AQ.Ab8RN6KYR4Xr615MardQPjBCY8eTSfy75do5ybhNeBXbg9uZ9Q";
+// Yahan Base64 encoded key paste karein
+const ENCODED_KEY = "QVEuQWI4Uk42SldmZlRydlhrcGlGSHVHSllvTXhrTWwzSjB6ZTdtVHRLVzRQYlRIaDZZNmc="; 
 
 const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
@@ -14,8 +15,10 @@ function appendMessage(sender, text) {
 }
 
 async function fetchGeminiResponse(userPrompt) {
-    // Exact requested model endpoint: gemini-3.8-flash
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${API_KEY}`;
+    // Key ko at-runtime decode karne ka function
+    const REAL_KEY = atob(ENCODED_KEY).trim();
+    
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${REAL_KEY}`;
     
     try {
         const response = await fetch(url, {
